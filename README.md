@@ -22,7 +22,7 @@ The protocol establishes two separate double-encrypted tunnels:
 
 ![Double-encrypted dual-tunnel data exchange](/assets/tunnel.png)
 
-For an in-depth discussion of the protocol see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
+For an in-depth discussion of the protocol and the roles of *Ἀχιλλεύς*, *Πάτροκλος*, and *Μίνως*, see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
 Below are the models, the datasets, and various source files used/mentioned in the paper:
 
 ## 🤖 Models
