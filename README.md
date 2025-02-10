@@ -13,7 +13,7 @@ It achieves the above via the methods outlined below:
 
 1. Establish an end-to-end encrypted tunnel between every user, via ***Local Programmable States***,
 2. Enable adversarial machines to perform computations on encrypted data, via ***Shared Programmable States***,
-3. Introduce a standardized format to store and exchange user data, via ***Hadean Transmission Format***.
+3. Introduce a standardized format to store and exchange 3D data, via ***Hadean Transmission Format***.
 
 For an in-depth discussion of the methods see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
 Below are the models, the datasets, and various source files used/mentioned in the paper:
