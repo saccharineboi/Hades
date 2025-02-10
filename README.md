@@ -45,6 +45,10 @@ Its accuracy and loss on [lichess databases](https://database.lichess.org/) is s
 
 `train_legal_illegal.c` is used for the training, `test_legal_illegal.c` is used for the testing.
 
+Below is the graph of the training run for the above model:
+
+![Training run of model-alpha](/assets/model-alpha.png)
+
 ### weights-mate-nomate-2M
 
 This is a binary classifier trained to classify checkmates and non-checkmates (2M stands for 2 million training samples),
@@ -63,6 +67,10 @@ Its accuracy and loss on [lichess databases](https://database.lichess.org/) is s
 
 `train_mate_nomate.c` is used for the training, `test_mate_nomate.c` is used for the testing.
 
+Below is the graph of the training run for the above model:
+
+![Training run of model-alpha](/assets/model-beta.png)
+
 ### weights-white-black-checkmates-2M
 
 This is a binary classifier trained to classify checkmates by white and black (2M stands for 2 million training samples),
@@ -80,6 +88,10 @@ Its accuracy and loss on [lichess databases](https://database.lichess.org/) is s
 | lichess_db_standard_rated_2013-06.pgn  | 99.246025%  | 0.012457 |
 
 `train_white_black_checkmate.c` is used for the training, `test_white_black_checkmate.c` is used for the testing.
+
+Below is the graph of the training run for the above model:
+
+![Training run of model-alpha](/assets/model-gamma.png)
 
 ## 📖 Training Datasets
 
