@@ -1,6 +1,22 @@
 ## 🔒 Hades Protocol
 
-This repository contains the source code, scripts, and the datasets used in [E2EE Metaverse](https://hadesprotocol.org/whitepaper.pdf). Below is the description of every file:
+This repository contains the source code, scripts, and the datasets used in [E2EE Metaverse](https://hadesprotocol.org/whitepaper.pdf).
+
+## ℹ️ Introduction
+
+The purpose of the Hades protocol is two-fold:
+
+1. Improve the privacy of the users in [Metaverse](https://en.wikipedia.org/wiki/Metaverse),
+2. Improve the interoperability between the different implementations.
+
+It achieves the above via the methods outlined below:
+
+1. Establish an end-to-end encrypted tunnel between every user in a shared session,
+2. Enable adversarial machines to perform computations on encrypted shared data,
+3. Introduce standardized formats to store and exchange user data.
+
+For an in-depth overview see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
+Below are the models, the datasets, and various source files used/mentioned in the paper:
 
 ## 🤖 Models
 
