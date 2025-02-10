@@ -129,6 +129,11 @@ And the black pieces:
 
 <img src="/assets/black_pawn.png" style="width: 100px; height: 100px; display: inline-block;"> <img src="/assets/black_rook.png" style="width: 100px; height: 100px; display: inline-block; margin-left: 10px;"> <img src="/assets/black_knight.png" style="width: 100px; height: 100px; display: inline-block; margin-left: 10px;"> <img src="/assets/black_bishop.png" style="width: 100px; height: 100px; display: inline-block; margin-left: 10px;"> <img src="/assets/black_queen.png" style="width: 100px; height: 100px; display: inline-block; margin-left: 10px;"> <img src="/assets/black_king.png" style="width: 100px; height: 100px; display: inline-block; margin-left: 10px;">
 
+`render_board.py` generates an image of a chess board given its FEN string representation.
+E.g. the string 'r1bqkbnr/pp1p1ppp/2n1p3/2p5/3P1B2/5N2/PPP1PPPP/RN1QKB1R' corresponds to the image below:
+
+![Generated chess board](/assets/example_board.png)
+
 ## 🔒 Private Inference via CKKS
 
 The source files below are used to test inference on encrypted input:
