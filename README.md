@@ -15,7 +15,14 @@ It achieves the above via the methods outlined below:
 2. Enable adversarial machines to perform computations on encrypted data, via ***Shared Programmable States***,
 3. Introduce a standardized format to store and exchange 3D data, via ***Hadean Transmission Format***.
 
-For an in-depth discussion of the methods see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
+The protocol establishes two separate double-encrypted tunnels:
+
+1. The TLS tunnel that wraps the homomorphically encrypted payload,
+2. The DTLS tunnel that wraps the non-malleable E2EE payload.
+
+![Double-encrypted dual-tunnel data exchange](/assets/tunnel.png)
+
+For an in-depth discussion of the protocol see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
 Below are the models, the datasets, and various source files used/mentioned in the paper:
 
 ## 🤖 Models
