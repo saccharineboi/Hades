@@ -3,4 +3,5 @@
 /lib
 /lib64
 /share
+/misc
 pyvenv.cfg
