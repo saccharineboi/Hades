@@ -220,6 +220,7 @@ def render_predictions(screen, renderable_predictions):
 
 # activation function
 def logistic(x):
+    x = np.clip(x, -10.0, 10.0)
     return 1.0 / (1.0 + np.exp(-x))
 
 # karpathian validator
