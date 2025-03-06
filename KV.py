@@ -32,6 +32,7 @@ WINDOW_DIMS         = (370, 500)
 WINDOW_TITLE        = "KV"
 EMPTY_BOARD_POS     = (0, 65)
 BORDER_COLOR        = "yellow"
+BORDER_WIDTH        = 3
 TEXT_COLOR          = "white"
 SQUARE_X_OFFSET     = 12
 SQUARE_Y_OFFSET     = 76
@@ -43,6 +44,9 @@ PIECE_OFFSET        = 2.2
 MODEL_ALPHA_URL     = "./models/weights-legal-illegal-10M"
 MODEL_BETA_URL      = "./models/weights-mate-nomate-2M"
 MODEL_GAMMA_URL     = "./models/weights-white-black-checkmates-2M"
+DEFAULT_FONT_NAME   = "arial"
+SMALL_FONT_SIZE     = 14
+LARGE_FONT_SIZE     = 28
 
 # fp32 representation of the pieces
 SQUARE_EMPTY        =   0.0
@@ -112,8 +116,8 @@ pygame.init()
 pygame.display.set_caption(WINDOW_TITLE)
 screen = pygame.display.set_mode(WINDOW_DIMS)
 clock = pygame.time.Clock()
-big_font = pygame.font.SysFont("arial", 28)
-small_font = pygame.font.SysFont("arial", 14)
+big_font = pygame.font.SysFont(DEFAULT_FONT_NAME, LARGE_FONT_SIZE)
+small_font = pygame.font.SysFont(DEFAULT_FONT_NAME, SMALL_FONT_SIZE)
 
 # generate a tensor out of the given fen string
 def create_input_tensor(board_fen):
@@ -141,7 +145,7 @@ def render_text(screen, font, text, text_color, border_color, is_selected, x, y)
 
     if is_selected:
         border_rect = text_surface.get_rect(topleft=(x, y))
-        pygame.draw.rect(screen, border_color, border_rect.inflate(8, 8), 2)
+        pygame.draw.rect(screen, border_color, border_rect.inflate(8, 8), BORDER_WIDTH)
 
 # render a border around the square over which the mouse is hovering
 def render_border_around_square(screen, border_color, mouse_pos):
@@ -156,7 +160,7 @@ def render_border_around_square(screen, border_color, mouse_pos):
             break
 
     if x_pos is not None and y_pos is not None:
-        pygame.draw.rect(screen, border_color, (x_pos, y_pos, SQUARE_SIDE_LEN, SQUARE_SIDE_LEN), 3)
+        pygame.draw.rect(screen, border_color, (x_pos, y_pos, SQUARE_SIDE_LEN, SQUARE_SIDE_LEN), BORDER_WIDTH)
 
 # returns the x,y index of the clicked board position
 def get_square_pos(clicked_mouse_pos):
@@ -195,11 +199,12 @@ def gen_render_predictions(selected_model, selected_square, board_fen):
     if None in selected_square:
         return []
     input_tensor = create_input_tensor(board_fen)
-    selected_piece_value = input_tensor[selected_square[0] * 8 + selected_square[1]]
+    selected_square_ind = selected_square[0] * 8 + selected_square[1]
+    selected_piece_value = input_tensor[selected_square_ind]
     rects = []
     for i in range(64, 128):
         input_tensor_copy = np.copy(input_tensor)
-        input_tensor_copy[64 + selected_square[0] * 8 + selected_square[1]] = SQUARE_EMPTY
+        input_tensor_copy[64 + selected_square_ind] = SQUARE_EMPTY
         input_tensor_copy[i] = selected_piece_value
         output_tensor = selected_model.inference(input_tensor_copy.reshape(128, 1))
         transparent_surface = pygame.Surface((SQUARE_SIDE_LEN, SQUARE_SIDE_LEN), pygame.SRCALPHA)
@@ -242,15 +247,15 @@ class KV:
         output_tensor = logistic(output_tensor)
         return output_tensor
 
-model_alpha = KV(MODEL_ALPHA_URL)
-model_beta = KV(MODEL_BETA_URL)
-model_gamma = KV(MODEL_GAMMA_URL)
+model_alpha     = KV(MODEL_ALPHA_URL)
+model_beta      = KV(MODEL_BETA_URL)
+model_gamma     = KV(MODEL_GAMMA_URL)
 
-selected_model = model_alpha
+selected_model  = model_alpha
+renderable_predictions = []
 
 # render loop
 isRunning = True
-renderable_predictions = []
 while isRunning:
 
     for event in pygame.event.get():
@@ -281,8 +286,8 @@ while isRunning:
     render_text(screen, big_font, "model-β", TEXT_COLOR, BORDER_COLOR, is_model_beta_selected, 130, 15)
     render_text(screen, big_font, "model-γ", TEXT_COLOR, BORDER_COLOR, is_model_gamma_selected, 250, 15)
 
-    render_text(screen, small_font, "Tip #1: Click on one of the squares to see predictions", "white", "white", False, 10, WINDOW_DIMS[1] - 50)
-    render_text(screen, small_font, "Tip #2: Press space to switch between models", "white", "white", False, 10, WINDOW_DIMS[1] - 30)
+    render_text(screen, small_font, "Tip #1: Click on one of the squares to see predictions", TEXT_COLOR, BORDER_COLOR, False, 10, WINDOW_DIMS[1] - 50)
+    render_text(screen, small_font, "Tip #2: Press space to switch between models", TEXT_COLOR, BORDER_COLOR, False, 10, WINDOW_DIMS[1] - 30)
 
     render_board(screen, sys.argv[1])
 
