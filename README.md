@@ -1,19 +1,25 @@
-## 🔒 Hades Protocol
+## 🔒 The HADES Protocol and the E2EE Metaverse
 
-This repository contains the source code, scripts, and the datasets used in [E2EE Metaverse](https://hadesprotocol.org/whitepaper.pdf).
+This repository contains the source code, the datasets, and other miscellaneous files used in the
+[whitepaper](https://someurl.com) and the [preprint](https://anotherurl.com).
+The datasets are sourced from the [Lichess database](https://database.lichess.org).
 
 ## ℹ️ Introduction
 
-The purpose of the Hades protocol is two-fold:
+The purpose of the HADES protocol is to improve the privacy of users in the [Metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
-1. Improve the privacy of the users in [Metaverse](https://en.wikipedia.org/wiki/Metaverse),
-2. Improve the interoperability between the different implementations of the protocol.
+The protocol achieves this by:
 
-It achieves the above via the methods outlined below:
+1. Establishing an E2EE tunnel between two users (e.g. Ἀχιλλεύς and Πάτροκλος),
+2. Enabling adversarial machines (e.g. Μίνως) to perform computations on encrypted user input.
 
-1. Establish an end-to-end encrypted tunnel between every user, via ***Local Programmable States***,
-2. Enable adversarial machines to perform computations on encrypted data, via ***Shared Programmable States***,
-3. Introduce a standardized format to store and exchange 3D data, via ***Hadean Transmission Format***.
+The synopsis:
+
+- Ἀχιλλεύς wants to play chess with Πάτροκλος. However, everytime he does, Πάτροκλος either breaks the rules or refuses to admit defeat. So Ἀχιλλεύς requests Μίνως to act as an arbiter. But Ἀχιλλεύς doesn’t trust Μίνως, for he thinks that Μίνως favors Πάτροκλος and will choose his side in disputes. Therefore, Ἀχιλλεύς wants Μίνως to enforce the rules of chess without knowing who plays what.
+- Πάτροκλος receives a request from Ἀχιλλεύς for a game of chess. Like Ἀχιλλεύς, he also doesn’t trust Μίνως. Unlike Ἀχιλλεύς, he thinks that Μίνως favors Ἀχιλλεύς and will choose his side in disputes. Therefore, Πάτροκλος also wants Μίνως to enforce the rules of chess without knowing who plays what.
+- Μίνως offers himself to be the arbiter of a chess game between Ἀχιλλεύς and Πάτροκλος. He really doesn’t like it when people break the rules, however, so he decides that he will send the delinquent to Τάρταρος. To this end he must identify the players and the moves that they play.
+
+Since neither Ἀχιλλεύς nor Πάτροκλος want to end up in Τάρταρος, they will have to come up with a scheme to make Μίνως enforce the rules of chess without him knowing anything about the moves being played nor whose game he is enforcing. Notwithstanding his biases, Μίνως is willing to act as a semi-honest arbiter, following the protocol while trying to exploit any available information.
 
 The protocol establishes two separate double-encrypted tunnels:
 
@@ -21,9 +27,6 @@ The protocol establishes two separate double-encrypted tunnels:
 2. The DTLS tunnel that wraps the non-malleable E2EE payload.
 
 ![Double-encrypted dual-tunnel data exchange](/assets/tunnel.png)
-
-For an in-depth discussion of the protocol and the roles of *Ἀχιλλεύς*, *Πάτροκλος*, and *Μίνως*, see the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
-Below are the models, the datasets, and various source files used/mentioned in the paper:
 
 ## 🤖 Models
 
@@ -41,7 +44,8 @@ also referred to as the `model-alpha` in the [whitepaper](https://hadesprotocol.
 The associated `weights-legal-illegal-log-10M` is a text file containing the training log.
 Its accuracy and loss on [lichess databases](https://database.lichess.org/) is show below:
 
-| Database                               | Accuracy    | Loss     |
+
+| Database <img width="441" height="1">  | Accuracy <img width="441" height="1"> | Loss <img width="441" height="1"> |
 | -------------------------------------- | ----------- | -------- |
 | lichess_db_standard_rated_2013-01.pgn  | 93.813515%  | 0.093202 |
 | lichess_db_standard_rated_2013-02.pgn  | 93.820229%  | 0.092993 |
@@ -63,7 +67,7 @@ also referred to as the `model-beta` in the [whitepaper](https://hadesprotocol.o
 The associated `weights-mate-nomate-log-2M` is a text file containing the training log.
 Its accuracy and loss on [lichess databases](https://database.lichess.org/) is show below:
 
-| Database                               | Accuracy    | Loss     |
+| Database <img width="441" height="1"> | Accuracy <img width="441" height="1"> | Loss <img width="441" height="1"> |
 | -------------------------------------- | ----------- | -------- |
 | lichess_db_standard_rated_2013-01.pgn  | 92.539078%  | 0.126696 |
 | lichess_db_standard_rated_2013-02.pgn  | 92.611618%  | 0.125757 |
@@ -85,7 +89,7 @@ also referred to as the `model-gamma` in the [whitepaper](https://hadesprotocol.
 The associated `weights-white-black-checkmates-log-2M` is a text file containing the training log.
 Its accuracy and loss on [lichess databases](https://database.lichess.org/) is show below:
 
-| Database                               | Accuracy    | Loss     |
+| Database <img width="441" height="1"> | Accuracy <img width="441" height="1"> | Loss <img width="441" height="1"> |
 | -------------------------------------- | ----------- | -------- |
 | lichess_db_standard_rated_2013-01.pgn  | 99.309647%  | 0.011806 |
 | lichess_db_standard_rated_2013-02.pgn  | 99.340698%  | 0.011336 |
@@ -122,7 +126,7 @@ Their compressed outputs are saved in the `lichess_tensorized` directory. You mu
 
 ## 👁 Renderers
 
-These scripts have been used to generate some of the images in the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
+These scripts have been used to generate some of the figures in the [whitepaper](https://hadesprotocol.org/whitepaper.pdf).
 
 - `render_piece.py`: Renders a chess piece given its symbol
 - `render_board.py`: Renders a chess board given its position as a [FEN string](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
