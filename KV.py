@@ -26,16 +26,21 @@ if len(sys.argv) < 2:
     print(f"usage: {sys.argv[0]} <FEN_STRING>", sys.argv[0])
     sys.exit(0)
 
+# screenshot mode (hides the top and bottom bars)
+is_in_screenshot_mode = False
+if len(sys.argv) > 2 and sys.argv[2] == '--screenshot':
+    is_in_screenshot_mode = True
+
 # constants
 FPS                 = 60
-WINDOW_DIMS         = (370, 500)
+WINDOW_DIMS         = (370, 500) if not is_in_screenshot_mode else (370, 370)
 WINDOW_TITLE        = "KV"
-EMPTY_BOARD_POS     = (0, 65)
+EMPTY_BOARD_POS     = (0, 65) if not is_in_screenshot_mode else (0, 0)
 BORDER_COLOR        = "yellow"
 BORDER_WIDTH        = 3
 TEXT_COLOR          = "white"
 SQUARE_X_OFFSET     = 12
-SQUARE_Y_OFFSET     = 76
+SQUARE_Y_OFFSET     = 76 if not is_in_screenshot_mode else 10
 SQUARE_SIDE_LEN     = 45
 SQUARES_ON_X_AXIS   = [ pos for pos in range(SQUARE_X_OFFSET, SQUARE_X_OFFSET + SQUARE_SIDE_LEN * 7, SQUARE_SIDE_LEN - 2) ]
 SQUARES_ON_Y_AXIS   = [ pos for pos in range(SQUARE_Y_OFFSET, SQUARE_Y_OFFSET + SQUARE_SIDE_LEN * 7, SQUARE_SIDE_LEN - 2) ]
@@ -282,12 +287,12 @@ while isRunning:
     screen.fill("black")
     screen.blit(board_texture, EMPTY_BOARD_POS)
 
-    render_text(screen, big_font, "model-α", TEXT_COLOR, BORDER_COLOR, is_model_alpha_selected, 10, 15)
-    render_text(screen, big_font, "model-β", TEXT_COLOR, BORDER_COLOR, is_model_beta_selected, 130, 15)
-    render_text(screen, big_font, "model-γ", TEXT_COLOR, BORDER_COLOR, is_model_gamma_selected, 250, 15)
-
-    render_text(screen, small_font, "Tip #1: Click on one of the squares to see predictions", TEXT_COLOR, BORDER_COLOR, False, 10, WINDOW_DIMS[1] - 50)
-    render_text(screen, small_font, "Tip #2: Press space to switch between models", TEXT_COLOR, BORDER_COLOR, False, 10, WINDOW_DIMS[1] - 30)
+    if not is_in_screenshot_mode:
+        render_text(screen, big_font, "model-α", TEXT_COLOR, BORDER_COLOR, is_model_alpha_selected, 10, 15)
+        render_text(screen, big_font, "model-β", TEXT_COLOR, BORDER_COLOR, is_model_beta_selected, 130, 15)
+        render_text(screen, big_font, "model-γ", TEXT_COLOR, BORDER_COLOR, is_model_gamma_selected, 250, 15)
+        render_text(screen, small_font, "Tip #1: Click on one of the squares to see predictions", TEXT_COLOR, BORDER_COLOR, False, 10, WINDOW_DIMS[1] - 50)
+        render_text(screen, small_font, "Tip #2: Press space to switch between models", TEXT_COLOR, BORDER_COLOR, False, 10, WINDOW_DIMS[1] - 30)
 
     render_board(screen, sys.argv[1])
 
