@@ -175,7 +175,9 @@ E.g. the string 'r1bqkbnr/pp1p1ppp/2n1p3/2p5/3P1B2/5N2/PPP1PPPP/RN1QKB1R' corres
 
 ![Generated chess board](/assets/example_board.png)
 
-`KV.py` visualizes the predictions made by the models, e.g. see the image below:
+`KV.py` visualizes the predictions made by the models, e.g. the below
+figure shows `model-alpha`'s predictions for the white knight on G1,
+correctly predicting the legal squares that the knight can move to.
 
 ![Visualization of one of the predictions made by KV.py](/assets/example_pred_vis.png)
 
