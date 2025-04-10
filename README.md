@@ -1,4 +1,4 @@
-## 🔒 HADES protocol: E2EE Metaverse
+## 道 HADES protocol: E2EE Metaverse
 
 This repository contains the source code, the datasets, and other miscellaneous files used in the
 [whitepaper](https://hadesprotocol.org/Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf) and the [preprint](https://hadesprotocol.org/HADES_E2EE_Metaverse_Protocol_Paper.pdf).
